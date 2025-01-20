@@ -3,9 +3,9 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "realesrgan-upscaler"
+name = "realgen"
 version = "0.1.0"
-description = "Real-ESRGAN image upscaling and restoration tool."
+description = "Real-ESRGAN: image upscaling and restoration tool."
 readme = "README.md"
 authors = [{name = "Your Name", email = "you@example.com"}]
 license = "MIT"
@@ -25,10 +25,10 @@ classifiers = [
 ]
 
 [project.scripts]
-realesrgan-upscaler = "realesrgan_upscaler.main:cli"
+realgen-cli = "realesrgan_upscaler.main:cli"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools]
-packages = ["realesrgan_upscaler"]
+packages = ["realgen"]
