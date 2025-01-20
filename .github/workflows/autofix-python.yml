@@ -1,0 +1,42 @@
+name: Python Auto Fix
+
+on:
+  push:
+    branches:
+      - main  # or replace with the branch you want to monitor
+  pull_request:
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # Specify your desired Python version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install black flake8 autopep8
+
+    - name: Lint and fix with Flake8
+      run: flake8 . || echo "Linting completed"
+
+    - name: Auto-fix with Black
+      run: black .
+
+    - name: Auto-fix with autopep8
+      run: autopep8 --in-place --recursive .
+
+    - name: Commit changes
+      run: |
+        git config --local user.name "GitHub Actions"
+        git config --local user.email "actions@github.com"
+        git add .
+        git commit -m "Auto-fix Python code using Black and autopep8" || echo "No changes to commit"
+        git push || echo "No changes to push"
