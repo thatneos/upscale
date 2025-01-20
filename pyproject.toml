@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "realesrgan-upscaler"
+version = "0.1.0"
+description = "Real-ESRGAN image upscaling and restoration tool."
+readme = "README.md"
+authors = [{name = "Your Name", email = "you@example.com"}]
+license = "MIT"
+dependencies = [
+    "gradio>=3.9",
+    "basicsr",
+    "realesrgan",
+    "torchvision",
+    "opencv-python",
+    "gfpgan",
+]
+keywords = ["image", "upscaling", "restoration", "AI", "realesrgan"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+realesrgan-upscaler = "realesrgan_upscaler.main:cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools]
+packages = ["realesrgan_upscaler"]
